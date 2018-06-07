@@ -3,6 +3,7 @@
 import unittest
 import orgnr
 
+
 class OrganisasjonsnummerTestCase(unittest.TestCase):
     """Tests for the orgnr functions`."""
 
@@ -27,6 +28,19 @@ class OrganisasjonsnummerTestCase(unittest.TestCase):
         """Is the invalid orgnr invalid?"""
         invalid_orgnr = '981617516'
         self.assertFalse(orgnr.check_orgnr(invalid_orgnr))
+
+    def test_invalid_orgnr_is_invalid_again(self):
+        """Is the invalid orgnr invalid?"""
+        invalid_orgnr = '281617516'
+        self.assertFalse(orgnr.check_orgnr(invalid_orgnr))
+
+    def test_generate_orgnr(self):
+        """Generate and validate multiple numbers"""
+        for i in range(0, 50):
+            random_orgnr = orgnr.generate_random_orgnr()
+            #print(random_orgnr)
+            self.assertTrue(orgnr.check_orgnr(random_orgnr))
+
 
 if __name__ == '__main__':
     unittest.main()
